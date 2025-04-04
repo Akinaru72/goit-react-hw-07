@@ -1,0 +1,44 @@
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+}
+.list {
+  margin: auto;
+  border: 1px solid #646cff;
+  border-radius: 8px;
+  width: 320px;
+  padding: 20px;
+  margin-bottom: 40px;
+}
+
+.label {
+  text-align: start;
+  display: block;
+  margin-bottom: 8px;
+}
+
+.formInput {
+  border-style: 1px;
+  border-radius: 8px;
+  padding-block: 8px;
+  padding-inline: 12px;
+  min-width: 300px;
+  width: 90%;
+  margin-bottom: 30px;
+}
+
+.error {
+  top: 32px;
+  left: 8px;
+  color: tomato;
+}
+
+.btn {
+  display: block;
+  margin-top: 30px;
+  background-color: #7ac7ea;
+  margin-left: auto;
+  margin-right: auto;
+}

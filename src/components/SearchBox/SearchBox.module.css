@@ -1,0 +1,18 @@
+.container {
+  margin: auto;
+  margin-bottom: 40px;
+  text-align: center;
+}
+.label {
+  display: block;
+  margin-bottom: 10px;
+}
+
+.inputField {
+  border-style: 1px;
+  border-radius: 8px;
+  padding-block: 8px;
+  padding-inline: 12px;
+  min-width: 300px;
+  margin-bottom: 30px;
+}
