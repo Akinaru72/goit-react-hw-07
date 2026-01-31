@@ -1,13 +1,10 @@
 import { ClipLoader } from "react-spinners";
 import css from "./Loader.module.css";
 
-const Loader = () => {
-  // console.log("loader.........");
+export default function Loader() {
   return (
-    <div className={css.container}>
-      <ClipLoader className={css.loader} color="#36d7b7" />
+    <div className={css.loader}>
+      <ClipLoader color="#3b1ebc" />
     </div>
   );
-};
-
-export default Loader;
+}

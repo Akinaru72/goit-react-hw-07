@@ -1,33 +1,24 @@
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
-import { useId } from "react";
-import { nanoid } from "nanoid";
+import { useDispatch } from "react-redux";
 import { addContact } from "../../redux/contactsOps";
 
 import css from "./ContactForm.module.css";
-import { useDispatch } from "react-redux";
 
 const ContactSchema = Yup.object().shape({
   name: Yup.string()
+    .required('The "Name" is required field!')
     .min(3, `The "Name" is too short!`)
-    .max(50, `The "Name" is too long!`)
-    .required('The "Name" is required field!'),
+    .max(50, `The "Name" is too long!`),
   number: Yup.string()
+    .required('The "Number" is required field!')
     .min(3, `The "Number" is too short!`)
-    .max(50, `The "Number" is too long!`)
-    .required('The "Number" is required field!'),
+    .max(50, `The "Number" is too long!`),
 });
 
-const ContactForm = () => {
+export default function ContactForm() {
   const dispatch = useDispatch();
-
-  const nameFieldId = useId();
-  const numberFieldId = useId();
   const handleSubmit = (values, actions) => {
-    // const newContact = { ...values};
-    console.log("handleSubmit", values);
-
-    // const addContactAction = addContact(newContact);
     dispatch(addContact(values));
     actions.resetForm();
   };
@@ -41,32 +32,33 @@ const ContactForm = () => {
       validationSchema={ContactSchema}
       onSubmit={handleSubmit}
     >
-      <Form className={css.list}>
-        <label className={css.label} htmlFor={nameFieldId}>
+      <Form className={css.form}>
+        <label className={css.label} htmlFor="name">
           Name
         </label>
         <Field
-          className={css.formInput}
+          id="name"
+          className={css.input}
           type="text"
           name="name"
-          id={nameFieldId}
+          autoComplete="name"
         />
         <ErrorMessage className={css.error} name="name" component="span" />
-        <label className={css.label} htmlFor={nameFieldId}>
+        <label className={css.label} htmlFor="number">
           Number
         </label>
         <Field
-          className={css.formInput}
+          id="number"
+          className={css.input}
           type="tel"
           name="number"
-          id={numberFieldId}
+          autoComplete="tel"
         />
         <ErrorMessage className={css.error} name="number" component="span" />
-        <button className={css.btn} type="submit">
+        <button type="submit" className={css.btn}>
           Add contact
         </button>
       </Form>
     </Formik>
   );
-};
-export default ContactForm;
+}

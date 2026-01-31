@@ -1,24 +1,25 @@
+import ContactList from "../ContactList/ContactList";
 import ContactForm from "../ContactForm/ContactForm";
 import SearchBox from "../SearchBox/SearchBox";
-import ContactList from "../ContactList/ContactList";
-import Loader from "../../components/Loader/Loader";
-import ErrorMessage from "../../components/ErrorMessage/ErrorMessage";
+import Loader from "../Loader/Loader";
 
 import css from "./App.module.css";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchContacts } from "../../redux/contactsOps";
+import ErrorMessage from "../ErrorMessage/ErrorMessage";
 import {
   selectContacts,
-  selectLoading,
-  selectError,
+  selectIsLoading,
+  selectIsError,
 } from "../../redux/contactsSlice";
 
-const App = () => {
+export default function App() {
   const dispatch = useDispatch();
   const contacts = useSelector(selectContacts);
-  const isLoading = useSelector(selectLoading);
-  const isError = useSelector(selectError);
+  const isLoading = useSelector(selectIsLoading);
+  const isError = useSelector(selectIsError);
+
   useEffect(() => {
     dispatch(fetchContacts());
   }, [dispatch]);
@@ -27,12 +28,10 @@ const App = () => {
     <div>
       <h1 className={css.title}>Phonebook</h1>
       <ContactForm />
+      <SearchBox />
       {isLoading && <Loader />}
       {isError && <ErrorMessage />}
-      <SearchBox />
       {contacts.length > 0 && !isError && <ContactList />}
     </div>
   );
-};
-
-export default App;
+}
